@@ -2,6 +2,7 @@ package ru.easyjava.easymock;
 
 import org.easymock.EasyMockRule;
 import org.easymock.Mock;
+import org.easymock.MockType;
 import org.easymock.TestSubject;
 import org.junit.Rule;
 import org.junit.Test;
@@ -15,7 +16,7 @@ public class GreeterTargetImplTest {
     @Rule
     public EasyMockRule em = new EasyMockRule(this);
 
-    @Mock
+    @Mock(type = MockType.NICE)
     private Coin coinMock;
 
     @TestSubject
@@ -31,6 +32,7 @@ public class GreeterTargetImplTest {
 
     @Test
     public void testFalse() {
+        replay(coinMock);
         assertThat(testedObject.get(), is("Spring"));
     }
 }
